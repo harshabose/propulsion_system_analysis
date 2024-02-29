@@ -2,7 +2,7 @@
 //  operationalPoint.h
 //  Conceptual Design Kit
 //
-//  Created by Harshavardhan Karnati on 31/08/2023.
+//  Created by Harshavardhan Karnati on 31/12/2023.
 //
 
 #ifndef operationalPoint_h
@@ -112,7 +112,6 @@ private:
 
     nlohmann::json convert_operational_to_json () {
         nlohmann::json j;
-        //public
         j["density"] = this->density;
         j["altitude"] = this->altitude;
         j["temperature"] = this->temperature;
