@@ -14,7 +14,7 @@ The tool is packaged as a Docker file, creating a virtual environment on your sy
 ```
 To analyze your specific design parameters, simply modify the main.cpp file with your data and repeat the steps above to see the changes reflected. For those preferring a local setup, the following dependencies are required:
 
-- NLOPT
+- [NLOPT](https://github.com/stevengj/nlopt)
 - python3.10-dev
 - numpy
 - [pybind11](https://github.com/pybind/pybind11)
