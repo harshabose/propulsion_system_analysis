@@ -7,7 +7,7 @@ This tool employs a non-linear vortex wake Blade Element Momentum Theory model, 
 The tool also offers versatile control options, including blade pitch, RPM, or a combination of both, facilitating the exploration of both fixed and pitch-controlled propeller variants. Additionally, it incorporates features for modeling non-linear twist and taper, enhancing its capability to simulate complex aerodynamic behaviour.
 
 ## How to use?
-The tool is packaged as a Docker file, creating a virtual environment on your system and installing all necessary dependencies with minimal user interaction. To utilize this tool, ensure Docker is installed on your system and follow the steps below:
+The tool is packaged as a Docker file, creating a virtual environment on your system and installing all necessary dependencies with minimal user interaction. To utilize this tool, ensure **Docker is installed on your system** and follow the steps below:
 
 ``` bash
   git clone https://github.com/harshabose/propulsion_system_analysis.git
