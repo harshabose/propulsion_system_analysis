@@ -1,6 +1,6 @@
 # propulsion_system_analysis
 
-A simple yet powerful tool designed to analyze and optimize the aerodynamics and conceptual layout of propulsion systems. In the era of Unmanned Aerial Vehicles (UAVs) and electric Vertical Take-Off and Landing (eVTOL) aircraft, the need for an efficient algorithm to evaluate the performance of propulsion system layouts at the conceptual phase is more critical than ever. To address this need, I have developed this tool.
+A simple yet powerful tool designed to analyse and optimize the aerodynamics and conceptual layout of propulsion systems. In the era of Unmanned Aerial Vehicles (UAVs) and electric Vertical Take-Off and Landing (eVTOL) aircraft, the need for an efficient algorithm to evaluate the performance of propulsion system layouts at the conceptual phase is more critical than ever. To address this need, I have developed this tool.
 
 This tool employs a non-linear vortex wake Blade Element Momentum Theory model, augmented with correction factors. The model solves for induced wake velocities at certain locations of the propeller plane and sends the velocity data to aerosandbox (a python library, called from pybind11 interpreter) to accurately calculate the aerodynamics data at each blade section. By analyzing the aerodynamic matrices, the tool can calculate the performance of the propulsion system, facilitating rapid and precise modelling of propulsion systems at the early stages of the development cycle. 
 
