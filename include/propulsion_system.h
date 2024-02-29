@@ -22,7 +22,6 @@
 #include "nlopt/nlopt.h"
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
-// #include "/opt/homebrew/opt/python@3.11/Frameworks/Python.framework/Versions/3.11/include/python3.11/Python.h"
 
 
 class propulsion_system {
@@ -247,7 +246,6 @@ private:
             this->thrust_coeffecient = this->thrust_required / (this->propulsion_system_object->atmosphere->density * this->propeller_static_area * (this->RPM * this->radius) * (this->RPM * this->radius));
 
             this->tip_loss_factor = 1.0f - sqrt(2.0f * this->thrust_coeffecient) / static_cast<float>(this->number_of_blades);
-            if (this->tip_loss_factor < 0.0f) std:: cerr << "NEGATIVE tip loss factor" << this->tip_loss_factor << " " << this->thrust_coeffecient << " " << this->number_of_blades << std::endl;
             if (this->tip_loss_factor < 0.0f) throw std::runtime_error("Negative 'tip loss factor' encountered... Skipping the iteration...");
             this->propeller_effective_area = this->propeller_static_area * ((tip_loss_factor * tip_loss_factor) - (this->root_cut_factor * this->root_cut_factor));
             this->thrust_effective_coeffecient = this->thrust_required / (this->propulsion_system_object->atmosphere->density * this->propeller_effective_area * (this->RPM * this->radius) * (this->RPM * this->radius));
@@ -260,7 +258,7 @@ private:
                 this->radius_iterator.push_back(root_radius + tip_radius * increment);
                 if (this->radius_iterator[i] < 0.0f) {
                     std::cout << "NEGATIVE RADIUS: " << this->radius_iterator[i] << "RPM: " << this->RPM << std::endl;
-                    std::exit(1);
+                    throw std::runtime_error("Negative 'radius' implied... Skipping the iteration...");
                 }
             }
         }
@@ -368,9 +366,7 @@ private:
 
                             auto [sectional_lift, sectional_drag] = this->get_sectional_aerodynamics(effective_sectional_angle_of_attack, resultant_sectional_velocity, sectional_chord, sectional_span, true);
                             this->average_angle_of_attack =+ effective_sectional_angle_of_attack / static_cast<float>(this->number_of_blade_sections * this->number_of_psi_angles_divisions);
-                            // std::cout << effective_sectional_angle_of_attack << "\t -> " << sectional_lift << ", " << sectional_drag << std::endl;
                             {
-                                // std::shared_lock<std::shared_mutex> write_lock(mutex_);
                                 total_lift += sectional_lift;
                                 total_drag += sectional_drag;
                                 force_x += sectional_lift * std::sin(phi) + sectional_drag * std::cos(phi);
@@ -384,7 +380,7 @@ private:
                 this->calculate_induced_velocities();
 
                 // pybind11::gil_scoped_release release;
-                lambda_wrapper(0, this->number_of_psi_angles_divisions);    //TODO some error with loops_per_block in thread_manager.h
+                lambda_wrapper(0, this->number_of_psi_angles_divisions);    //TODO some error with loops_per_block in thread_manager.h. cannot multithread with pybind11
 
                 // this->propulsion_system_object->propulsion_threads->push_loop(static_cast<size_t>(0), this->number_of_psi_angles_divisions, 5, lambda_wrapper);
                 // this->propulsion_system_object->propulsion_threads->wait_for_all_tasks_in_que();
@@ -435,7 +431,7 @@ private:
             cast_data->calculate_propeller_forces_moments(guess_RPM, guess_root_pitch);
             const auto end = std::chrono::high_resolution_clock::now();
             const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-            // nlopt_get_obtained_thrust_coeffecient(1, x, grad, cast_data);
+
             cast_data->opt_call++;
             std::cout << "\n" << cast_data->opt_call;
             std::cout << "\tRPM: " << guess_RPM << ", pitch: " << guess_root_pitch << " -> " << cast_data->total_power_required << ", TIME TAKEN: " << duration.count() << " milliseconds." << std::endl;
@@ -470,7 +466,7 @@ private:
 
 void optimise_propulsion_system ();
 
-void plot_propulsion_system ();
+void create_image_propulsion_system ();
 
 void genetic_propulstion_system ();
 
