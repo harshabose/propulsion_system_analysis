@@ -14,6 +14,8 @@ The tool is packaged as a Docker file, creating a virtual environment on your sy
   cd propulsion_system
   docker build -t propulsion_system_image --progress=plain .
 ```
+Executing these commands builds an image within your Docker environment. You can then run this image in a container, which should automatically launch an example case for demonstration.
+
 To analyze your specific design parameters, simply modify the main.cpp file with your data and repeat the steps above to see the changes reflected. For those preferring a local setup, the following dependencies are required:
 
 - [NLOPT](https://github.com/stevengj/nlopt)
