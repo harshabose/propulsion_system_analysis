@@ -5,17 +5,17 @@
 
 int main()
 {
-    static constexpr float altitude = 3941.37869f;
-    static constexpr float velocity = 61.92303103f;
-    static constexpr float angle_of_attack = 3.080505517f;
-    static constexpr float thrust_required = 3687.74f;
-    static constexpr float gamma = 4.695810749f;
-    static size_t opt_count = 0;
+    constexpr float altitude = 3941.37869f;
+    constexpr float velocity = 61.92303103f;
+    constexpr float angle_of_attack = 3.080505517f;
+    constexpr float thrust_required = 3687.74f;
+    constexpr float gamma = 4.695810749f;
+    size_t opt_count = 0;
 
-    static constexpr size_t number_of_propellers_ = 4;
-    static constexpr size_t number_of_blades_ = 3;
-    static constexpr float radius_ = 1.0f;
-    static constexpr float chord_ = 0.3f;
+    constexpr size_t number_of_propellers_ = 4;
+    constexpr size_t number_of_blades_ = 3;
+    constexpr float radius_ = 1.0f;
+    constexpr float chord_ = 0.3f;
 
     pybind11::initialize_interpreter();
     const auto atmosphere = std::make_shared<operationalPoint_h::operationalPoint>(altitude, velocity, 0, angle_of_attack);
