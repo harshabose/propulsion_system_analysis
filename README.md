@@ -1,21 +1,26 @@
 # propulsion_system_analysis
 
-A simple yet powerful tool to analyse and optimise propulsion system aerodynamics and conceptual layout.
-With the rise of UAVs and eVTOL aircraft, a simple algorithm to test the performance of a given propulsion system
-layout in the conceptual state is crucial for the development cycle of the aircraft. Thus, I developed this tool
+A simple yet powerful tool designed to analyze and optimize the aerodynamics and conceptual layout of propulsion systems. In the era of Unmanned Aerial Vehicles (UAVs) and electric Vertical Take-Off and Landing (eVTOL) aircraft, the need for an efficient algorithm to evaluate the performance of propulsion system layouts at the conceptual phase is more critical than ever. To address this need, I have developed a groundbreaking tool.
 
-The tools uses a non-linear vortex wake BEMT model with correction factor to simulate the aerodynamics of the blades of the propellers.
-From the solved aerodynamics matrices, the performance of the propulsion system are calculated allowing for rapid yet accurate modelling
-of propulsion systems in the early stage of developement cycle.
+This tool employs a non-linear vortex wake Blade Element Momentum Theory model, augmented with correction factors, to accurately simulate the aerodynamics of propeller blades. By analyzing the aerodynamic matrices it solves, the tool can calculate the performance of the propulsion system, facilitating rapid and precise modelling of propulsion systems at the early stages of the development cycle. The tool offers versatile control options, including blade pitch, RPM, or a combination of both, facilitating the exploration of both fixed and pitch-controlled propeller variants. Additionally, it incorporates features for modeling non-linear twist and taper, enhancing its capability to simulate complex aerodynamic behaviour.
 
 ## How to use?
-The whole package is in the form of docker file. Which when run, creates a virtual environment on your setup and installs all dependencies.
-To run the tool,
+The tool is packaged as a Docker file, creating a virtual environment on your system and installing all necessary dependencies with minimal user interaction. To utilize this tool, ensure Docker is installed on your system and follow the steps below:
 
 ``` bash
-  git clone 
-```j
+  git clone https://github.com/harshabose/propulsion_system_analysis.git
+  cd propulsion_system
+  docker build -t propulsion_system_image --progress=plain .
+```
+To analyze your specific design parameters, simply modify the main.cpp file with your data and repeat the steps above to see the changes reflected. For those preferring a local setup, the following dependencies are required:
 
+- NLOPT
+- python3.10-dev
+- numpy
+- [pybind11](https://github.com/pybind/pybind11)
+- [aerosandbox](https://github.com/peterdsharpe/AeroSandbox?tab=readme-ov-file)
 
-[aerosandbox](https://github.com/peterdsharpe/AeroSandbox?tab=readme-ov-file)
+This tool is aimed at conceptual and pre-conceptual stage design iteration where rapid calculations and trade-off studies are needed.
+This should allow the user to quickly conduct analyses and narrow the search space for possible configurations and effeciency.
 
+NOTE: documentation work is pending
