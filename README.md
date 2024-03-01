@@ -15,6 +15,7 @@ The tool is packaged as a Docker file, creating a virtual environment on your sy
   docker build -t propulsion_system_image --progress=plain .
 ```
 Executing these commands builds an image named *propulsion_system_image* within your Docker environment. You can then run this image in a container, which should automatically launch an example case for demonstration.
+**NOTE:** This programme is CPU-intensive. A high-performance system is recommended for optimal operation.
 
 To analyse your specific design parameters, simply modify the main.cpp file with your data and repeat the steps above to see the changes reflected. For those preferring a local setup, the following dependencies are required:
 
