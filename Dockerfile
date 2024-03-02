@@ -26,8 +26,6 @@ RUN ldconfig
 
 COPY . .
 
-RUN rm -r /app/cmake-build-debug
-
 RUN mkdir -p /app/cmake-build-debug
 
 RUN cmake -DCMAKE_BUILD_TYPE=Release -B /app/cmake-build-debug -S /app
