@@ -26,13 +26,13 @@ RUN ldconfig
 
 COPY . .
 
-RUN mkdir -p /app/cmake-build-debug
+RUN mkdir -p /app/cmake-build-release
 
-RUN cmake -DCMAKE_BUILD_TYPE=Release -B /app/cmake-build-debug -S /app
+RUN cmake -DCMAKE_BUILD_TYPE=Release -B /app/cmake-build-release -S /app
 
-RUN cmake --build /app/cmake-build-debug --target propulsion_system -j 6
+RUN cmake --build /app/cmake-build-release --target propulsion_system -j 6
 
-WORKDIR /app/cmake-build-debug
+WORKDIR /app/cmake-build-release
 
 CMD ["./propulsion_system"]
 
